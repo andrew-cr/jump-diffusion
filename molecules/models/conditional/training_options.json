@@ -1,0 +1,133 @@
+{
+  "dataset_kwargs": {
+    "class_name": "training.dataset.QM9Dataset",
+    "random_rotation": false,
+    "only_second_half": true,
+    "subset": -1,
+    "pos_norm": 1.0,
+    "atom_type_norm": 0.25,
+    "train_or_valid": "train",
+    "condition_on_alpha": true,
+    "shuffle_node_ordering": true,
+    "charge_norm": 10.0
+  },
+  "distributed": false,
+  "device": "cuda",
+  "data_loader_kwargs": {
+    "pin_memory": true,
+    "num_workers": 8,
+    "prefetch_factor": 2
+  },
+  "loss_kwargs": {
+    "class_name": "training.loss.JumpLossFinalDim",
+    "score_loss_weight": 1.0,
+    "rate_loss_weight": 1.0,
+    "min_t": 0.001,
+    "mean_or_sum_over_dim": "mean",
+    "nearest_atom_pred": true,
+    "rate_function_name": "step",
+    "noise_schedule_name": "vp_sde",
+    "auto_loss_weight": 1.0,
+    "vp_sde_beta_max": 20.0,
+    "nearest_atom_loss_weight": 1.0,
+    "x0_logit_ce_loss_weight": 1.0,
+    "vp_sde_beta_min": 0.1,
+    "loss_type": "eps",
+    "rate_cut_t": 0.1
+  },
+  "optimizer_kwargs": {
+    "class_name": "torch.optim.Adam",
+    "lr": 3e-05,
+    "betas": [
+      0.9,
+      0.999
+    ],
+    "eps": 1e-08
+  },
+  "just_visualize": false,
+  "structure_kwargs": {
+    "exist": [
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    "observed": [
+      0,
+      0,
+      0,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ]
+  },
+  "sampler_kwargs": {
+    "class_name": "training.sampler.JumpSampler",
+    "dt": 0.001,
+    "do_jump_back": false,
+    "corrector_start_time": 0.1,
+    "corrector_steps": 0,
+    "corrector_finish_time": 0.003,
+    "dt_schedule": "uniform",
+    "dt_schedule_h": 0.001,
+    "condition_type": "sweep",
+    "do_jump_corrector": false,
+    "guidance_weight": 1.0,
+    "dt_schedule_tc": 0.5,
+    "condition_sweep_idx": 0,
+    "sample_near_atom": true,
+    "do_conditioning": false,
+    "condition_sweep_path": null,
+    "dt_schedule_l": 0.001,
+    "corrector_snr": 0.1,
+    "jump_back_start_time": 0.5,
+    "no_noise_final_step": false
+  },
+  "grad_conditioner_kwargs": {
+    "class_name": "training.grad_conditioning.MoleculeJump",
+    "grad_norm_clip": 1.0,
+    "lr_rampup_kimg": 320
+  },
+  "network_kwargs": {
+    "model_type": "EGNNMultiHeadJump",
+    "rate_use_x0_pred": true,
+    "transformer_dim": 128,
+    "n_heads": 8,
+    "n_attn_blocks": 8,
+    "detach_last_layer": true,
+    "noise_embed": "ts*1000",
+    "use_fp16": false,
+    "class_name": "training.networks.EpsilonPrecond",
+    "augment_dim": 9
+  },
+  "augment_kwargs": {
+    "class_name": "training.augment.AugmentPipe",
+    "p": 0.12,
+    "xflip": 100000000.0,
+    "yflip": 1,
+    "scale": 1,
+    "rotate_frac": 1,
+    "aniso": 1,
+    "translate_frac": 1
+  },
+  "total_kimg": 200000,
+  "ema_halflife_kimg": 500,
+  "batch_size": 64,
+  "batch_gpu": null,
+  "loss_scaling": 1.0,
+  "cudnn_benchmark": true,
+  "kimg_per_tick": 50,
+  "snapshot_ticks": 25,
+  "state_dump_ticks": 25,
+  "log_img_ticks": 50,
+  "seed": 2047813205,
+  "run_dir": ""
+}
