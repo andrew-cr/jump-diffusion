@@ -1,4 +1,7 @@
-# Functions from the Equivariant Diffusion for Molecule Generation in 3D paper
+# This code is adapted from
+# https://github.com/ehoogeboom/e3_diffusion_for_molecules
+
+
 import torch
 import numpy as np
 from torch.distributions.categorical import Categorical

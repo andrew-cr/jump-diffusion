@@ -1,3 +1,7 @@
+# This code is adapted from
+# https://github.com/ehoogeboom/e3_diffusion_for_molecules
+
+
 import torch
 import numpy as np
 
