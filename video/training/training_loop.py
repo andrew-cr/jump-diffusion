@@ -171,12 +171,12 @@ def training_loop(
     stats_jsonl = None
     while True:
 
-        # add paths to tell network/loss function to make plots
-        if dist.get_rank() == 0:
-            plot_dir = os.path.join(run_dir, 'plots')
-            os.makedirs(plot_dir, exist_ok=True)
-            net.model.plot_path = os.path.join(plot_dir, f'training-{cur_tick//10:06d}-inputs.png')
-            loss_fn.plot_path = os.path.join(plot_dir, f'training-{cur_tick//10:06d}-outputs.png')
+        # # add paths to tell network/loss function to make plots
+        # if dist.get_rank() == 0:
+        #     plot_dir = os.path.join(run_dir, 'plots')
+        #     os.makedirs(plot_dir, exist_ok=True)
+        #     net.model.plot_path = os.path.join(plot_dir, f'training-{cur_tick//10:06d}-inputs.png')
+        #     loss_fn.plot_path = os.path.join(plot_dir, f'training-{cur_tick//10:06d}-outputs.png')
 
         # Accumulate gradients.
         optimizer.zero_grad(set_to_none=True)

@@ -30,7 +30,7 @@ torchrun --standalone --nproc_per_node=4 train.py --path=datasets/robodesk/ --da
 ```
 
 # Sampling
-We provide pretrained checkpoints [here](https://drive.google.com/drive/folders/1O2LXpEGk0GGFUnfyWEPXcCsO4dITThSf?usp=sharing). You can download them to `models/` and sample with them using the following command: 
+We provide pretrained checkpoints [here](https://drive.google.com/drive/folders/1OzrH2Tg7q4SwwfcbYsPoLLvHW8_Ov4OT?usp=sharing) ~~[here](https://drive.google.com/drive/folders/1O2LXpEGk0GGFUnfyWEPXcCsO4dITThSf?usp=sharing)~~. You can download them to `models/` and sample with them using the following command: 
 
 ```
 torchrun --standalone --nproc_per_node=1 generate.py --steps 100 --S_churn 50 --S_noise 1.007 --seeds=0 --batch 1 --cond_endpoints --network=models/score/network-snapshot-001100.pkl --jump_network=models/jump_rate_and_index/network-snapshot-000450.pkl
