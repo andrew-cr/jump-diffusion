@@ -1,5 +1,4 @@
 import torch.nn as nn
-from .clip import ClipEmbedder, ClipChannels, clip_names_to_kwargs
 
 
 class NullEmbedder(nn.Module):
@@ -12,5 +11,4 @@ class NullEmbedder(nn.Module):
 
 embedder_names_to_kwargs = {
     'NullEmbedder': set(),
-    **clip_names_to_kwargs,
 }

@@ -80,7 +80,7 @@ class WrappedUNetVideoModel(UNetVideoModel):
                 if len(noise_vals) == 1:
                     # only one frame type - it must have non-zero noise
                     #nprint('only one noise val', noise_vals[0])
-                    new_frame_indices[b] = frame_indices[:,:-1]
+                    new_frame_indices = frame_indices[:,:-1]
                     continue
                 elif len(noise_vals) == 2:
                     # print('two noise vals', noise_vals)

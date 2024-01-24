@@ -230,14 +230,16 @@ also, good to mask loss function based on which dimensions were deleted
 
 @persistence.persistent_class
 class DimDeletionProcess():
-    def __init__(self, P_mean, P_std, preaugmented_structure, large_value=100, any_dimension_deletion=False, highly_nonisotropic=False, jump_per_index=False,
-                 dim_del_sigma_min=1, dim_del_sigma_max=10,
+    def __init__(self, P_mean, P_std, preaugmented_structure=None, large_value=100, any_dimension_deletion=False, highly_nonisotropic=False, jump_per_index=False,
+                 dim_del_sigma_min=1, dim_del_sigma_max=10, max_dim=None,
     ):
         # TODO there will be an error if sigma is sampled > large_value ?
         self.P_mean = P_mean
         self.P_std = P_std
         self.preaugmented_structure = preaugmented_structure
-        self.max_dim = preaugmented_structure.dim_handler.max_dim
+        if max_dim is None:
+            max_dim = preaugmented_structure.dim_handler.max_dim
+        self.max_dim = max_dim
         self.any_dimension_deletion = any_dimension_deletion
         self.highly_nonisotropic = highly_nonisotropic
         self.large_value = large_value

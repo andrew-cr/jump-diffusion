@@ -376,7 +376,7 @@ def main(network_pkl, jump_network, outdir, data_path, load_obs_from, subdirs, s
             #unstacked_data = [dataset_obj.__getitem__(i, will_augment=False, deterministic=True) for i in indices]
             unstacked_data = []
             for i in indices:
-                with RNG(i):
+                with RNG(int(i)):
                     datum = dataset_obj.__getitem__(i, will_augment=False, deterministic=True, do_duplicate=False)
                     unstacked_data.append(datum)
         else:
