@@ -15,6 +15,7 @@ datasets/
             noise_0.1_256.hdf5
         ...
 ```
+Note that we provide a dummy robodesk dataset with only 10 videos, since our sampling procedure will give an error if there are none. The full dataset should be downloaded before training.
 
 # Training
 
@@ -36,6 +37,8 @@ We provide pretrained checkpoints [here](https://drive.google.com/drive/folders/
 torchrun --standalone --nproc_per_node=1 generate.py --steps 100 --S_churn 50 --S_noise 1.007 --seeds=0 --batch 1 --cond_endpoints --network=models/score/network-snapshot-001100.pkl --jump_network=models/jump_rate_and_index/network-snapshot-000450.pkl
 ```
 
+Samples are saved inside `results/`.
+
 # Environment
 
 ```
@@ -49,3 +52,6 @@ moviepy
 Pillow
 einops
 ```
+Our sampling procedure additionally uses `matplotlib` for visualisation.
+
+To log to [wandb.ai](wandb.ai) during training, the `WANDB_ENTITY` and `WANDB_PROJECT` environment variables should also be set (to your wandb username and a desired project name).
